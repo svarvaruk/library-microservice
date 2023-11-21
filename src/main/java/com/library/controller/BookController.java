@@ -7,7 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -98,7 +100,15 @@ public class BookController {
 		
 		return pagedResourcesAssembler.toModel(books, bookModelAssembler);
 	}	
-		
+
+	@DeleteMapping("/api/books/{id}")
+	ResponseEntity<Book> deleteBook(@PathVariable String id) {
+
+		  bookService.deleteBook(id);
+
+		  return ResponseEntity.noContent().build();
+	}
+	
 	private Book validateBook(String id) {
 		return bookService.getBook(id);
 	}
