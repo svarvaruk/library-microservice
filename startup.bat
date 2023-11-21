@@ -1,0 +1,1 @@
+java -Xms256m -Xmx1g -Dcom.sun.xml.bind.v2.bytecode.ClassTailor.noOptimize=true -Dserver.port=8080 -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=9003,suspend=n -jar target\library-1.0.1-SNAPSHOT.jar
